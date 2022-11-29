@@ -4,14 +4,14 @@ venv:
 	pip install --upgrade pip setuptools wheel ;\
 	pip install -e .[test]
 
-pylint:
+pylint: venv
 	. ./venv/bin/activate ;\
 	pylint --rcfile pylintrc target_snowflake/
 
-unit_test:
+unit_test: venv
 	. ./venv/bin/activate ;\
 	pytest tests/unit -vv --cov target_snowflake --cov-fail-under=67
 
-integration_test:
+integration_test: venv
 	. ./venv/bin/activate ;\
 	pytest tests/integration/ -vvx --cov target_snowflake --cov-fail-under=86
